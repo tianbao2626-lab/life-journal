@@ -1,11 +1,17 @@
-# Life手帐 Life Journal
+# Life手帐（GitHub 手机网页上传简化版）
 
-一个支持中英双语的个人手帐网页应用。
+## 上传步骤
+在解压后的文件夹中，把以下 5 个文件上传到 GitHub 仓库根目录：
+- index.html
+- manifest.webmanifest
+- sw.js
+- icon.svg
+- README.md
 
-## 功能
-- 日记、计划与习惯记录
-- AI 助手接口框架
-- 7 天试用界面
-- 手机浏览器适配
+不要上传 ZIP 文件本身。所有文件都放在仓库根目录，不需要手动创建文件夹。
 
-后续将继续完善和部署。
+## 免费部署
+在 Cloudflare Pages 中连接 GitHub 仓库，Framework preset 选择 None，Build command 留空，Build output directory 填 `.`。
+
+## 重要说明
+这是方便先免费发布的静态版。日记、计划等前端功能主要保存在当前浏览器。此版不包含后端 API 文件，因此 AI 服务端接口、账号同步和真实支付未启用；7 天试用与 ¥18/月仅为界面演示。正式收费前需要配置后端、数据库、身份验证、AI 密钥和支付验证。
