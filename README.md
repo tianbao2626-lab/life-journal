@@ -1,26 +1,25 @@
-# Life手帐（GitHub 手机网页上传简化版）
+# Life手帐 Life Journal — 2.1 升级版
 
-## 上传步骤
-在解压后的文件夹中，把以下 5 个文件上传到 GitHub 仓库根目录：
-- index.html
-- manifest.webmanifest
-- sw.js
-- icon.svg
-- README.md
+## 本版更新
+- 修正页面版本标识为 2.1。
+- 更新 Service Worker 缓存版本，帮助手机浏览器加载新页面。
+- 保留原有本地数据键 `life-journal_v2_data`，不会主动清除旧记录。
+- 支持导出 JSON 备份、导入 JSON 备份；导入前会提示确认。
+- 使用设备本地日期归档日记、心情和灵感，减少跨时区日期偏差。
+- 试用结束后不再自动弹出付费遮罩，也不会锁住已有本地记录。
 
-不要上传 ZIP 文件本身。所有文件都放在仓库根目录，不需要手动创建文件夹。
+## 安卓手机上传 GitHub
+1. 解压 ZIP。进入 `life-journal-main` 文件夹。
+2. 打开 GitHub 仓库的根目录（不要进入其他子文件夹）。
+3. 上传并覆盖同名文件：`index.html`、`sw.js`、`manifest.webmanifest`、`icon.svg`、`README.md`。
+4. 提交更改（Commit changes）。
+5. 打开 Cloudflare Pages → 项目 → Deployments，等待最新部署显示 Success。
+6. 用 Chrome 打开网站，刷新；如仍显示旧版，关闭网站标签页后重新打开，或清除该站点缓存。
 
-## 免费部署
-在 Cloudflare Pages 中连接 GitHub 仓库，Framework preset 选择 None，Build command 留空，Build output directory 填 `.`。
+## Cloudflare Pages 设置
+如果已连接 GitHub 自动部署，无需重新创建项目。Framework preset: None；Build command 留空；Build output directory: `.`。
 
 ## 重要说明
-这是方便先免费发布的静态版。日记、计划等前端功能主要保存在当前浏览器。此版不包含后端 API 文件，因此 AI 服务端接口、账号同步和真实支付未启用；7 天试用与 ¥18/月仅为界面演示。正式收费前需要配置后端、数据库、身份验证、AI 密钥和支付验证。
+这是可免费部署的静态网页应用。日记、待办、计划、习惯和设置保存在当前浏览器的 localStorage 中；不会自动跨设备同步。请定期导出 JSON 备份。
 
-
-## 2.1 维护更新
-- 增加 JSON 备份导入，支持从之前导出的备份恢复数据。
-- 备份导出文件名包含本地日期。
-- 日期键改为设备本地日期，避免跨时区时日记/心情归档到前一天。
-- 增加本地存储写入失败提示。
-- 更新 Service Worker 缓存版本，避免旧页面缓存影响更新。
-- 保留原有 localStorage 数据键 `life-journal_v2_data`，升级不会主动清空旧数据。
+AI 页面提供本地模板演示；正式 AI 生成需要配置安全的服务端 API。18 元/月仅为方案展示；本包没有真实支付、账号系统或服务端会员验证，不会扣款，也不应对外宣称已具备正式收费能力。
