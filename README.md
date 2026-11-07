@@ -1,25 +1,24 @@
-# Life手帐 Life Journal — 2.1 升级版
+# Life手帐 Life Journal 2.2.0
 
-## 本版更新
-- 修正页面版本标识为 2.1。
-- 更新 Service Worker 缓存版本，帮助手机浏览器加载新页面。
-- 保留原有本地数据键 `life-journal_v2_data`，不会主动清除旧记录。
-- 支持导出 JSON 备份、导入 JSON 备份；导入前会提示确认。
-- 使用设备本地日期归档日记、心情和灵感，减少跨时区日期偏差。
-- 试用结束后不再自动弹出付费遮罩，也不会锁住已有本地记录。
+这是基于你之前的 Life手帐项目整理的 2.2.0 部署包。
 
-## 安卓手机上传 GitHub
-1. 解压 ZIP。进入 `life-journal-main` 文件夹。
-2. 打开 GitHub 仓库的根目录（不要进入其他子文件夹）。
-3. 上传并覆盖同名文件：`index.html`、`sw.js`、`manifest.webmanifest`、`icon.svg`、`README.md`。
-4. 提交更改（Commit changes）。
-5. 打开 Cloudflare Pages → 项目 → Deployments，等待最新部署显示 Success。
-6. 用 Chrome 打开网站，刷新；如仍显示旧版，关闭网站标签页后重新打开，或清除该站点缓存。
+## 上传前必须完成：Supabase Publishable Key
+1. 用文本编辑器打开 `index.html`。
+2. 搜索 `SUPABASE_PUBLISHABLE_KEY`。
+3. 将 `PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE` 替换成你在 Supabase 项目设置中复制的 **Publishable Key**。
+4. 只使用 Publishable/anon 公钥，不要使用 `service_role` 或 Secret Key。
+5. 保存文件。
 
-## Cloudflare Pages 设置
-如果已连接 GitHub 自动部署，无需重新创建项目。Framework preset: None；Build command 留空；Build output directory: `.`。
+Supabase URL 已保留为你之前提供的项目地址：
+`https://bdrlyluynxslblkvqfci.supabase.co`
+
+## GitHub 上传
+将 `index.html`、`sw.js`、`manifest.webmanifest`、`icon.svg` 上传到仓库 `main` 分支的根目录并覆盖同名文件。README 文件可选上传。
+上传后等待 Cloudflare Pages 的 Production 部署完成。
 
 ## 重要说明
-这是可免费部署的静态网页应用。日记、待办、计划、习惯和设置保存在当前浏览器的 localStorage 中；不会自动跨设备同步。请定期导出 JSON 备份。
-
-AI 页面提供本地模板演示；正式 AI 生成需要配置安全的服务端 API。18 元/月仅为方案展示；本包没有真实支付、账号系统或服务端会员验证，不会扣款，也不应对外宣称已具备正式收费能力。
+- 这是 2.2.0 客户端部署测试版，不代表 AI 或会员支付已接通。
+- AI 页面当前包含本地模板回退；真正 AI 需要安全的服务端 `/api/ai`。
+- 会员按钮需要服务端 `/api/checkout` 和真实支付/会员状态校验；当前不会真实扣款。
+- 云同步需要 Supabase `user_data` 表、以 `user_id` 为唯一键，并配置正确的 RLS 策略，限制用户只能访问自己的记录。
+- 上传前请先在旧版导出 JSON 备份。首次登录云同步时，遵循页面提示检查云端与本地数据。

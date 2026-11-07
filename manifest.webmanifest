@@ -1,7 +1,7 @@
 {
   "name": "Life手帐",
   "short_name": "Life手帐",
-  "description": "A gentle bilingual journal, planner and habit tracker.",
+  "description": "Life Journal 2.2.0 — bilingual journal, planner, habit tracker and Supabase sync test build.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f5f0e8",
